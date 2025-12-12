@@ -1,0 +1,14 @@
+# Python Requirements for Jute Ribboning Machine Project
+#
+# This project is primarily a Node.js (frontend) + ESP32 (firmware) project.
+# Python dependencies are only needed if you use PlatformIO for ESP32 development.
+#
+# PlatformIO itself is installed via pip:
+# pip install platformio
+#
+# If you're using Arduino IDE instead, you don't need Python dependencies.
+#
+# Optional: If you add Python scripts for data analysis, testing, or automation,
+# list those dependencies below:
+
+# platformio>=6.0.0  # Uncomment if using PlatformIO CLI for ESP32 firmware
