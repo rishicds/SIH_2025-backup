@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Card, Button } from "./UI";
-import { Zap, Leaf, Gauge } from "lucide-react";
+import { Zap, Leaf, Gauge, Play, Square } from "lucide-react";
 import { motorService } from "@/services/api";
 import useStore from "@/store/useStore";
 import { toast } from "sonner";
@@ -68,24 +68,7 @@ export const PowerModeSelector = () => {
     try {
       toast.info(`Switching to ${config.name}...`);
 
-      // Step 1: Turn off motors if they're running
-      if (bothMotorsOn) {
-        addLog({
-          motor: "System",
-          event: "Mode Switch: Stopping motors",
-          voltage: 0,
-        });
-
-        await Promise.all([motorService.stop("a"), motorService.stop("b")]);
-
-        updateMotorA({ isOn: false, status: "stopped" });
-        updateMotorB({ isOn: false, status: "stopped" });
-
-        // Wait for motors to fully stop
-        await new Promise((resolve) => setTimeout(resolve, 500));
-      }
-
-      // Step 2: Change speeds
+      // Change speeds directly without stopping motors
       addLog({
         motor: "System",
         event: `Mode Switch: Setting speeds to ${config.motorASpeed}%`,
@@ -100,14 +83,13 @@ export const PowerModeSelector = () => {
       updateMotorA({ speed: config.motorASpeed });
       updateMotorB({ speed: config.motorBSpeed });
 
-      // Wait for speed adjustment
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      // If motors were off, start them
+      if (!bothMotorsOn) {
+        await new Promise((resolve) => setTimeout(resolve, 200));
 
-      // Step 3: Turn motors back on if they were running
-      if (bothMotorsOn) {
         addLog({
           motor: "System",
-          event: "Mode Switch: Restarting motors",
+          event: "Mode Switch: Starting motors",
           voltage: 0,
         });
 
@@ -128,17 +110,58 @@ export const PowerModeSelector = () => {
     } catch (error) {
       console.error("Failed to switch mode:", error);
       toast.error("Failed to switch mode");
+    } finally {
+      setIsSwitching(false);
+    }
+  };
 
-      // Try to restore motors to running state if they were on
-      if (bothMotorsOn) {
-        try {
-          await Promise.all([motorService.start("a"), motorService.start("b")]);
-          updateMotorA({ isOn: true, status: "running" });
-          updateMotorB({ isOn: true, status: "running" });
-        } catch (restoreError) {
-          console.error("Failed to restore motor state:", restoreError);
-        }
-      }
+  const handleStartBoth = async () => {
+    if (isSwitching) return;
+
+    setIsSwitching(true);
+    try {
+      toast.info("Starting both motors...");
+
+      await Promise.all([motorService.start("a"), motorService.start("b")]);
+
+      updateMotorA({ isOn: true, status: "running" });
+      updateMotorB({ isOn: true, status: "running" });
+
+      toast.success("Both motors started!");
+      addLog({
+        motor: "System",
+        event: "Both motors started",
+        voltage: 0,
+      });
+    } catch (error) {
+      console.error("Failed to start motors:", error);
+      toast.error("Failed to start motors");
+    } finally {
+      setIsSwitching(false);
+    }
+  };
+
+  const handleStopBoth = async () => {
+    if (isSwitching) return;
+
+    setIsSwitching(true);
+    try {
+      toast.info("Stopping both motors...");
+
+      await Promise.all([motorService.stop("a"), motorService.stop("b")]);
+
+      updateMotorA({ isOn: false, status: "stopped" });
+      updateMotorB({ isOn: false, status: "stopped" });
+
+      toast.success("Both motors stopped!");
+      addLog({
+        motor: "System",
+        event: "Both motors stopped",
+        voltage: 0,
+      });
+    } catch (error) {
+      console.error("Failed to stop motors:", error);
+      toast.error("Failed to stop motors");
     } finally {
       setIsSwitching(false);
     }
@@ -146,11 +169,35 @@ export const PowerModeSelector = () => {
 
   return (
     <Card>
-      <div className="mb-4">
-        <h3 className="text-xl font-bold text-white mb-1">Power Mode</h3>
-        <p className="text-sm text-gray-400">
-          Select operating mode for both motors
-        </p>
+      <div className="mb-4 flex items-start justify-between">
+        <div>
+          <h3 className="text-xl font-bold text-white mb-1">Power Mode</h3>
+          <p className="text-sm text-gray-400">
+            Select operating mode for both motors
+          </p>
+        </div>
+        <div className="flex gap-2">
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={handleStartBoth}
+            disabled={isSwitching || (motorA.isOn && motorB.isOn)}
+            className="flex items-center gap-2"
+          >
+            <Play size={16} />
+            Start Both
+          </Button>
+          <Button
+            variant="danger"
+            size="sm"
+            onClick={handleStopBoth}
+            disabled={isSwitching || (!motorA.isOn && !motorB.isOn)}
+            className="flex items-center gap-2"
+          >
+            <Square size={16} />
+            Stop Both
+          </Button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
