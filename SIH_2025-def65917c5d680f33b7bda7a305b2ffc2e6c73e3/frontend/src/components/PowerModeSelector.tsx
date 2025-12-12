@@ -171,8 +171,8 @@ export const PowerModeSelector = () => {
     <Card>
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <h3 className="text-xl font-bold text-white mb-1">Power Mode</h3>
-          <p className="text-sm text-gray-400">
+          <h3 className="text-xl font-bold text-gray-900 mb-1">Power Mode</h3>
+          <p className="text-sm text-gray-600">
             Select operating mode for both motors
           </p>
         </div>
@@ -215,7 +215,7 @@ export const PowerModeSelector = () => {
                 ${
                   isActive
                     ? config.bgColor
-                    : "bg-dark-700 border-dark-600 hover:border-dark-500"
+                    : "bg-light-100 border-light-300 hover:border-light-400"
                 }
                 ${
                   isSwitching
@@ -227,26 +227,26 @@ export const PowerModeSelector = () => {
             >
               <div className="flex items-center gap-3 mb-2">
                 <div className={config.color}>{config.icon}</div>
-                <span className="font-semibold text-white">{config.name}</span>
+                <span className="font-semibold text-gray-900">{config.name}</span>
                 {isActive && (
                   <span className="ml-auto">
                     <div className="w-2 h-2 rounded-full bg-current animate-pulse" />
                   </span>
                 )}
               </div>
-              <p className="text-xs text-gray-400 text-left">
+              <p className="text-xs text-gray-600 text-left">
                 {config.description}
               </p>
-              <div className="mt-3 pt-3 border-t border-dark-600">
+              <div className="mt-3 pt-3 border-t border-light-300">
                 <div className="flex justify-between text-xs">
-                  <span className="text-gray-500">Motor A:</span>
-                  <span className={isActive ? config.color : "text-gray-400"}>
+                  <span className="text-gray-600">Motor A:</span>
+                  <span className={isActive ? config.color : "text-gray-600"}>
                     {config.motorASpeed}%
                   </span>
                 </div>
                 <div className="flex justify-between text-xs mt-1">
-                  <span className="text-gray-500">Motor B:</span>
-                  <span className={isActive ? config.color : "text-gray-400"}>
+                  <span className="text-gray-600">Motor B:</span>
+                  <span className={isActive ? config.color : "text-gray-600"}>
                     {config.motorBSpeed}%
                   </span>
                 </div>
@@ -258,8 +258,8 @@ export const PowerModeSelector = () => {
 
       {isSwitching && (
         <div className="mt-4 text-center">
-          <div className="inline-flex items-center gap-2 text-sm text-neon">
-            <div className="w-4 h-4 border-2 border-neon border-t-transparent rounded-full animate-spin" />
+          <div className="inline-flex items-center gap-2 text-sm text-primary">
+            <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
             <span>Switching mode...</span>
           </div>
         </div>

@@ -120,7 +120,7 @@ export const MotorControl = ({ motorId }: MotorControlProps) => {
         <div className="flex items-center gap-3">
           <div
             className={`p-2 rounded-lg ${
-              motor.isOn ? "bg-neon/20" : "bg-dark-700"
+              motor.isOn ? "bg-primary/20" : "bg-light-200"
             }`}
           >
             <DotLottieReact
@@ -131,10 +131,10 @@ export const MotorControl = ({ motorId }: MotorControlProps) => {
             />
           </div>
           <div>
-            <h3 className="text-xl font-bold text-white">{motorName}</h3>
-            <p className="text-sm text-gray-400">Sohojpaat Roller</p>
+            <h3 className="text-xl font-bold text-gray-900">{motorName}</h3>
+            <p className="text-sm text-gray-600">Sohojpaat Roller</p>
             {lastCommand && (
-              <p className="text-xs text-neon mt-1">{lastCommand}</p>
+              <p className="text-xs text-primary mt-1">{lastCommand}</p>
             )}
           </div>
         </div>
@@ -143,7 +143,7 @@ export const MotorControl = ({ motorId }: MotorControlProps) => {
 
       {/* Direction Control */}
       <div className="mb-4 flex items-center gap-3">
-        <span className="text-sm text-gray-400">Direction:</span>
+        <span className="text-sm text-gray-600">Direction:</span>
         <Button
           variant={direction === "forward" ? "primary" : "ghost"}
           size="sm"
@@ -158,7 +158,7 @@ export const MotorControl = ({ motorId }: MotorControlProps) => {
           )}
           {direction === "forward" ? "Forward" : "Reverse"}
         </Button>
-        <span className="text-xs text-gray-500 ml-auto">
+        <span className="text-xs text-gray-600 ml-auto">
           PWM: {pwmPercentage}%
         </span>
       </div>
@@ -183,47 +183,47 @@ export const MotorControl = ({ motorId }: MotorControlProps) => {
 
       {/* Live Metrics */}
       <div className="grid grid-cols-2 gap-4 mb-4">
-        <div className="bg-dark-700 p-4 rounded-lg">
+        <div className="bg-light-100 p-4 rounded-lg border border-light-300">
           <div className="flex items-center gap-2 mb-1">
-            <Gauge size={16} className="text-neon" />
-            <span className="text-xs text-gray-400">RPM</span>
+            <Gauge size={16} className="text-primary" />
+            <span className="text-xs text-gray-600">RPM</span>
           </div>
-          <p className="text-2xl font-bold text-white">{motor.rpm}</p>
+          <p className="text-2xl font-bold text-gray-900">{motor.rpm}</p>
         </div>
 
-        <div className="bg-dark-700 p-4 rounded-lg">
-          <span className="text-xs text-gray-400">Voltage</span>
-          <p className="text-2xl font-bold text-white">
+        <div className="bg-light-100 p-4 rounded-lg border border-light-300">
+          <span className="text-xs text-gray-600">Voltage</span>
+          <p className="text-2xl font-bold text-gray-900">
             {motor.voltage.toFixed(2)}{" "}
-            <span className="text-sm text-gray-400">V</span>
+            <span className="text-sm text-gray-600">V</span>
           </p>
         </div>
 
-        <div className="bg-dark-700 p-4 rounded-lg">
-          <span className="text-xs text-gray-400">Current</span>
-          <p className="text-2xl font-bold text-white">
+        <div className="bg-light-100 p-4 rounded-lg border border-light-300">
+          <span className="text-xs text-gray-600">Current</span>
+          <p className="text-2xl font-bold text-gray-900">
             {currentValue.toFixed(1)}{" "}
-            <span className="text-sm text-gray-400">mA</span>
+            <span className="text-sm text-gray-600">mA</span>
           </p>
         </div>
 
-        <div className="bg-dark-700 p-4 rounded-lg">
-          <span className="text-xs text-gray-400">Power</span>
-          <p className="text-2xl font-bold text-white">
-            {powerWatts} <span className="text-sm text-gray-400">W</span>
+        <div className="bg-light-100 p-4 rounded-lg border border-light-300">
+          <span className="text-xs text-gray-600">Power</span>
+          <p className="text-2xl font-bold text-gray-900">
+            {powerWatts} <span className="text-sm text-gray-600">W</span>
           </p>
         </div>
       </div>
 
       {/* Load Bar */}
-      <div className="w-full bg-dark-700 rounded-full h-2">
+      <div className="w-full bg-light-200 rounded-full h-2">
         <div
           className={`h-2 rounded-full transition-all duration-300 ${
             parseFloat(loadPercentage) > 80
               ? "bg-red-500"
               : parseFloat(loadPercentage) > 50
               ? "bg-yellow-500"
-              : "bg-neon"
+              : "bg-primary"
           }`}
           style={{ width: `${Math.min(parseFloat(loadPercentage), 100)}%` }}
         />

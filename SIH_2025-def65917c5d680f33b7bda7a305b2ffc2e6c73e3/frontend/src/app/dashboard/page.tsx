@@ -15,15 +15,15 @@ export default function DashboardPage() {
   return (
     <WebSocketProvider>
       <Layout>
-        <Toaster position="top-right" theme="dark" />
+        <Toaster position="top-right" theme="light" />
         <JamDetector />
         <div className="space-y-6">
           <div className="flex justify-between items-start">
             <div>
-              <h1 className="text-3xl font-bold text-white mb-2">
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">
                 Sohojpaat Machine Dashboard
               </h1>
-              <p className="text-gray-400">
+              <p className="text-gray-600">
                 Experience effortless jute ribboning with intelligent automation
               </p>
             </div>

@@ -132,9 +132,9 @@ export const EmergencyStop = () => {
 
       {/* Helper text */}
       <div className="mt-3 text-center">
-        <p className="text-xs text-gray-400">
+        <p className="text-xs text-gray-600">
           {isAnyMotorRunning ? (
-            <span className="text-red-400 font-semibold animate-pulse">
+            <span className="text-red-600 font-semibold animate-pulse">
               ⚠️ Click to immediately stop all motors
             </span>
           ) : (

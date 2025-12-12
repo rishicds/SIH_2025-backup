@@ -53,7 +53,7 @@ export const RealtimeCharts = () => {
   return (
     <Card>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-white">Real-time Monitoring</h2>
+        <h2 className="text-2xl font-bold text-gray-900">Real-time Monitoring</h2>
         <div className="flex gap-2">
           <div className="flex gap-1">
             {(["30s", "1m", "5m", "15m"] as const).map((window) => (
@@ -62,8 +62,8 @@ export const RealtimeCharts = () => {
                 onClick={() => setTimeWindow(window)}
                 className={`px-3 py-1 rounded text-sm ${
                   timeWindow === window
-                    ? "bg-neon text-dark-900"
-                    : "bg-dark-700 text-gray-400 hover:bg-dark-600"
+                    ? "bg-primary text-white"
+                    : "bg-light-200 text-gray-700 hover:bg-light-300"
                 }`}
               >
                 {window}
@@ -83,35 +83,35 @@ export const RealtimeCharts = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Motor A Charts */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-neon">Motor A</h3>
+          <h3 className="text-lg font-semibold text-primary">Motor A</h3>
 
-          <div className="bg-dark-700 p-4 rounded-lg">
+          <div className="bg-light-100 p-4 rounded-lg border border-light-300">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-gray-400">Voltage & Current</span>
+              <span className="text-sm text-gray-600">Voltage & Current</span>
               <button
                 onClick={() => exportToPNG("motorA-vc")}
-                className="text-gray-400 hover:text-neon"
+                className="text-gray-600 hover:text-primary"
               >
                 <Download size={16} />
               </button>
             </div>
             <ResponsiveContainer width="100%" height={200}>
               <LineChart data={dataA}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#232e3f" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#dee2e6" />
                 <XAxis dataKey="time" stroke="#6b7280" />
                 <YAxis stroke="#6b7280" />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#0a0e1a",
-                    border: "1px solid #232e3f",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid #dee2e6",
                   }}
-                  labelStyle={{ color: "#B6FF00" }}
+                  labelStyle={{ color: "#7CB800" }}
                 />
                 <Legend />
                 <Line
                   type="monotone"
                   dataKey="voltage"
-                  stroke="#B6FF00"
+                  stroke="#7CB800"
                   strokeWidth={2}
                   dot={false}
                 />
@@ -126,27 +126,27 @@ export const RealtimeCharts = () => {
             </ResponsiveContainer>
           </div>
 
-          <div className="bg-dark-700 p-4 rounded-lg">
+          <div className="bg-light-100 p-4 rounded-lg border border-light-300">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-gray-400">RPM</span>
+              <span className="text-sm text-gray-600">RPM</span>
               <button
                 onClick={() => exportToPNG("motorA-rpm")}
-                className="text-gray-400 hover:text-neon"
+                className="text-gray-600 hover:text-primary"
               >
                 <Download size={16} />
               </button>
             </div>
             <ResponsiveContainer width="100%" height={200}>
               <LineChart data={dataA}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#232e3f" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#dee2e6" />
                 <XAxis dataKey="time" stroke="#6b7280" />
                 <YAxis stroke="#6b7280" />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#0a0e1a",
-                    border: "1px solid #232e3f",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid #dee2e6",
                   }}
-                  labelStyle={{ color: "#B6FF00" }}
+                  labelStyle={{ color: "#7CB800" }}
                 />
                 <Legend />
                 <Line
@@ -163,35 +163,35 @@ export const RealtimeCharts = () => {
 
         {/* Motor B Charts */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-neon">Motor B</h3>
+          <h3 className="text-lg font-semibold text-primary">Motor B</h3>
 
-          <div className="bg-dark-700 p-4 rounded-lg">
+          <div className="bg-light-100 p-4 rounded-lg border border-light-300">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-gray-400">Voltage & Current</span>
+              <span className="text-sm text-gray-600">Voltage & Current</span>
               <button
                 onClick={() => exportToPNG("motorB-vc")}
-                className="text-gray-400 hover:text-neon"
+                className="text-gray-600 hover:text-primary"
               >
                 <Download size={16} />
               </button>
             </div>
             <ResponsiveContainer width="100%" height={200}>
               <LineChart data={dataB}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#232e3f" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#dee2e6" />
                 <XAxis dataKey="time" stroke="#6b7280" />
                 <YAxis stroke="#6b7280" />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#0a0e1a",
-                    border: "1px solid #232e3f",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid #dee2e6",
                   }}
-                  labelStyle={{ color: "#B6FF00" }}
+                  labelStyle={{ color: "#7CB800" }}
                 />
                 <Legend />
                 <Line
                   type="monotone"
                   dataKey="voltage"
-                  stroke="#B6FF00"
+                  stroke="#7CB800"
                   strokeWidth={2}
                   dot={false}
                 />
@@ -206,27 +206,27 @@ export const RealtimeCharts = () => {
             </ResponsiveContainer>
           </div>
 
-          <div className="bg-dark-700 p-4 rounded-lg">
+          <div className="bg-light-100 p-4 rounded-lg border border-light-300">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-gray-400">RPM</span>
+              <span className="text-sm text-gray-600">RPM</span>
               <button
                 onClick={() => exportToPNG("motorB-rpm")}
-                className="text-gray-400 hover:text-neon"
+                className="text-gray-600 hover:text-primary"
               >
                 <Download size={16} />
               </button>
             </div>
             <ResponsiveContainer width="100%" height={200}>
               <LineChart data={dataB}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#232e3f" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#dee2e6" />
                 <XAxis dataKey="time" stroke="#6b7280" />
                 <YAxis stroke="#6b7280" />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "#0a0e1a",
-                    border: "1px solid #232e3f",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid #dee2e6",
                   }}
-                  labelStyle={{ color: "#B6FF00" }}
+                  labelStyle={{ color: "#7CB800" }}
                 />
                 <Legend />
                 <Line

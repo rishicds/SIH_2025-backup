@@ -11,11 +11,11 @@
 #include <Adafruit_INA219.h>
 
 // ============ WiFi Configuration ============
-const char* ssid = "Galaxy A14 5G";
-const char* password = "potatochips";
+const char* ssid = "Deepam";
+const char* password = "buddy1234";
 
 // ============ WebSocket Configuration ============
-const char* ws_host = "10.121.155.187";  // Your computer's IP address
+const char* ws_host = "10.252.157.214";  // Your computer's IP address
 const uint16_t ws_port = 3000;
 const char* ws_path = "/ws/device?device_id=ESP32_001";  // Simplified without token
 

@@ -9,11 +9,11 @@
 #include <ArduinoJson.h>
 
 // WiFi Configuration
-const char* ssid = "Galaxy A14 5G";
-const char* password = "potatochips";
+const char* ssid = "Deepam";
+const char* password = "buddy1234";
 
-// WebSocket Configuration
-const char* ws_host = "10.252.163.187";  // Your computer's IP
+// ============ WebSocket Configuration ============
+const char* ws_host = "10.252.157.214";  // Your computer's IP
 const uint16_t ws_port = 3000;
 const char* ws_path = "/ws/device?device_id=esp32_1&token=esp32-device-token-xyz";
 

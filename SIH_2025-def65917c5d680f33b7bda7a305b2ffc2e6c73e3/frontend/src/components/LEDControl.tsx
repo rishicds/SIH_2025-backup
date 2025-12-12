@@ -40,11 +40,11 @@ export default function LEDControl() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700 shadow-xl">
+    <div className="bg-white rounded-2xl p-6 border border-light-300 shadow-xl">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xl font-bold text-white flex items-center gap-2">
+        <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
           <Lightbulb
-            className={ledOn ? "text-yellow-400" : "text-gray-400"}
+            className={ledOn ? "text-yellow-500" : "text-gray-500"}
             size={24}
           />
           ESP32 LED Test
@@ -52,8 +52,8 @@ export default function LEDControl() {
         <div
           className={`px-3 py-1 rounded-full text-sm font-semibold ${
             ledOn
-              ? "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30"
-              : "bg-gray-500/20 text-gray-400 border border-gray-500/30"
+              ? "bg-yellow-100 text-yellow-700 border border-yellow-300"
+              : "bg-gray-100 text-gray-600 border border-gray-300"
           }`}
         >
           {ledOn ? "ON" : "OFF"}
@@ -111,7 +111,7 @@ export default function LEDControl() {
           </button>
         </div>
 
-        <p className="text-gray-400 text-sm text-center">
+        <p className="text-gray-600 text-sm text-center">
           {ledOn
             ? "🟡 Built-in LED is currently ON (GPIO 2)"
             : "⚫ Built-in LED is currently OFF"}
